@@ -80,93 +80,86 @@ export default function Page() {
       </div>
 
       {/* the second section */}
-      <div className="bg-[#F9FAFB] my-20 px-10 md:px-20 lg:px-26">
-        <div className="flex items-center justify-center text-center flex-col gap-4 md:mx-10 lg:mx-28">
-          <h1 className="text-3xl md:text-[40px] font-bold md:font-extrabold">
-            Key Offerings and benefits
-          </h1>
-        </div>
+      <div className="bg-[#F9FAFB] my-20 px-6 sm:px-10 lg:px-20 py-16 rounded-2xl">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Key Offerings and Benefits
+            </h1>
+          </div>
 
-        <div className="grid gap-6 my-10 md:my-20 lg:grid-cols-3">
-          <div className="bg-blue-light text-white rounded-lg p-6">
-            <div className="bg-white rounded-md h-10 w-10 p-3">
-              <Image src={Case} alt="Case icon" />
-            </div>
-            <div>
-              <h1 className="font-bold text-xl md:text-2xl my-2">
-                Build a Strong Portfolio and Hands-On Experience
-              </h1>
-              <p className="font-extralight text-[14px]">
-                Tackle real-world projects through challenges and hackathons
-                that mirror real world challenges faced by businesses and
-                organizations. Therefore, showcase your skills and
-                accomplishments to potential employers and clients through a
-                portfolio of completed projects.
-              </p>
-            </div>
-          </div>
-          <div className="bg-blue-light text-white rounded-lg p-6">
-            <div className="bg-white rounded-md h-10 w-10 p-3">
-              <Image src={Case} alt="Case icon" />
-            </div>
-            <div>
-              <h1 className="font-bold text-xl md:text-2xl my-2">
-                Build a Strong Portfolio and Hands-On Experience
-              </h1>
-              <p className="font-extralight text-[14px]">
-                Tackle real-world projects through challenges and hackathons
-                that mirror real world challenges faced by businesses and
-                organizations. Therefore, showcase your skills and
-                accomplishments to potential employers and clients through a
-                portfolio of completed projects.
-              </p>
-            </div>
-          </div>
-          <div className="bg-blue-light text-white rounded-lg p-6">
-            <div className="bg-white rounded-md h-10 w-10 p-3">
-              <Image src={Case} alt="Case icon" />
-            </div>
-            <div>
-              <h1 className="font-bold text-xl md:text-2xl my-2">
-                Build a Strong Portfolio and Hands-On Experience
-              </h1>
-              <p className="font-extralight text-[14px]">
-                Tackle real-world projects through challenges and hackathons
-                that mirror real world challenges faced by businesses and
-                organizations. Therefore, showcase your skills and
-                accomplishments to potential employers and clients through a
-                portfolio of completed projects.
-              </p>
-            </div>
-          </div>
-          <div className="bg-blue-light text-white rounded-lg p-6 lg:col-span-2">
-            <div className="bg-white rounded-md h-10 w-10 p-3">
-              <Image src={Case} alt="Case icon" />
-            </div>
-            <div>
-              <h1 className="font-bold text-xl md:text-2xl my-2">
-                Enhance Your Employment Path
-              </h1>
-              <p className="font-extralight text-[14px]">
-                Develop the in-demand skills and build a strong portfolio to
-                increase your chances of landing your dream job or contract.
-              </p>
-            </div>
-          </div>
-          <div className="bg-blue-light text-white rounded-lg p-6">
-            <div className="bg-white rounded-md h-10 w-10 p-3">
-              <Image src={Case} alt="Case icon" />
-            </div>
-            <div>
-              <h1 className="font-bold text-xl md:text-2xl my-2">
-                Earn Recognition and Prizes
-              </h1>
-              <p className="font-extralight text-[14px]">
-                Earn both Money and Knowledge Prizes by participating in various
-                contests and competitions by working on real world projects and
-                hackathons from our partner companies & organizations.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                icon: "🎯",
+                title: "Project-Based Learning",
+                description: "Tackle real-world projects through challenges that mirror business needs and build practical skills."
+              },
+              {
+                icon: "💼",
+                title: "Portfolio Development",
+                description: "Help students showcase their skills and accomplishments to potential employers through completed projects."
+              },
+              {
+                icon: "🚀",
+                title: "Career Readiness",
+                description: "Prepare students for the job market with hands-on experience and industry-relevant skills."
+              },
+              {
+                icon: "🎓",
+                title: "Enhanced Learning",
+                description: "Complement academic courses with practical, real-world applications and problem-solving."
+              },
+              {
+                icon: "🏆",
+                title: "Recognition & Awards",
+                description: "Students earn recognition and prizes by participating in various contests and competitions."
+              }
+            ].map((feature, index) => (
+              <div
+                key={index}
+                className={`group relative overflow-hidden rounded-xl p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${
+                  index === 3 
+                    ? 'bg-gradient-to-br from-blue-light to-blue-dark text-white md:col-span-2 lg:col-span-1' 
+                    : 'bg-white text-gray-900 shadow-md hover:shadow-lg border border-gray-100'
+                }`}
+              >
+                {/* Background decoration */}
+                <div className={`absolute top-0 right-0 w-20 h-20 rounded-full opacity-10 transform translate-x-8 -translate-y-8 ${
+                  index === 3 ? 'bg-white' : 'bg-blue-light'
+                }`}></div>
+                
+                {/* Icon */}
+                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg mb-4 text-2xl ${
+                  index === 3 
+                    ? 'bg-white/20' 
+                    : 'bg-blue-light/10'
+                }`}>
+                  {feature.icon}
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10">
+                  <h3 className={`font-bold text-lg mb-3 ${
+                    index === 3 ? 'text-white' : 'text-gray-900'
+                  }`}>
+                    {feature.title}
+                  </h3>
+                  <p className={`text-sm leading-relaxed ${
+                    index === 3 ? 'text-white/90' : 'text-gray-600'
+                  }`}>
+                    {feature.description}
+                  </p>
+                </div>
+
+                {/* Hover effect */}
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                  index === 3 
+                    ? 'bg-gradient-to-br from-blue-dark/20 to-transparent' 
+                    : 'bg-gradient-to-br from-blue-light/5 to-transparent'
+                }`}></div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
