@@ -31,8 +31,9 @@ const ChallengeDetails = () => {
                 <div className="border p-6 rounded-md shadow-md">
                     <h1 className="text-2xl font-bold mb-2">{challenge.title}</h1>
                     <p className="text-gray-600">{challenge.description}</p>
-                    <p className="mt-2 text-gray-500">💰 Prize: ${challenge.moneyPrize}</p>
-                    <p className="mt-2 text-gray-500">📅 Deadline: {challenge.deadline}</p>
+                    <p className="mt-2 text-gray-500">🎯 Difficulty: {challenge.difficulty}</p>
+                    <p className="mt-2 text-gray-500">⏱️ Duration: {challenge.duration} days</p>
+                    <p className="mt-2 text-gray-500">📅 Created: {new Date(challenge.createdAt).toLocaleDateString()}</p>
                     <Link href="/challenges">
                         <button className="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
                             Back to Challenges

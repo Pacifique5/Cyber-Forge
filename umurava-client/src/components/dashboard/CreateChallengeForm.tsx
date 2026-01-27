@@ -3,17 +3,16 @@
 import React, { useState, useEffect } from "react";
 //import { createChallenge, updateChallenge } from "@/store/challengesSlice";
 
-// Define allowed status values
-type ChallengeStatus = "open" | "ongoing" | "completed";
+// Define allowed difficulty values
+type ChallengeDifficulty = "easy" | "medium" | "hard";
 
 interface Challenge {
     id: string;
     title: string;
     description: string;
-    status: ChallengeStatus;
-    moneyPrize: number;
-    deadline: string;
+    difficulty: ChallengeDifficulty;
     duration: number;
+    createdAt: string;
 }
 
 interface CreateChallengeFormProps {
@@ -26,11 +25,10 @@ export const CreateChallengeForm = ({ initialData, onSubmit }: CreateChallengeFo
     const [formData, setFormData] = useState<Challenge>({
         id: initialData?.id || "",
         title: initialData?.title || "",
-        moneyPrize: initialData?.moneyPrize || 0,
         description: initialData?.description || "",
-        deadline: initialData?.deadline || "",
-        status: initialData?.status || "open",
+        difficulty: initialData?.difficulty || "easy",
         duration: initialData?.duration || 0,
+        createdAt: initialData?.createdAt || "",
     });
 
     useEffect(() => {
@@ -44,7 +42,7 @@ export const CreateChallengeForm = ({ initialData, onSubmit }: CreateChallengeFo
 
         setFormData((prevData) => ({
             ...prevData,
-            [name]: name === "moneyPrize" || name === "duration" ? Number(value) || 0 : value, // Convert to number
+            [name]: name === "duration" ? Number(value) || 0 : value, // Convert duration to number
         }));
     };
 
@@ -67,15 +65,27 @@ export const CreateChallengeForm = ({ initialData, onSubmit }: CreateChallengeFo
                 />
             </div>
             <div>
-                <label className="block text-sm font-medium text-gray-700">Money Prize</label>
-                <input
-                    type="number"
-                    name="moneyPrize"
-                    value={formData.moneyPrize}
+                <label className="block text-sm font-medium text-gray-700">Description</label>
+                <textarea
+                    name="description"
+                    value={formData.description}
                     onChange={handleChange}
                     className="mt-1 block w-full border-gray-300 rounded-md"
                     required
                 />
+            </div>
+            <div>
+                <label className="block text-sm font-medium text-gray-700">Difficulty</label>
+                <select
+                    name="difficulty"
+                    value={formData.difficulty}
+                    onChange={handleChange}
+                    className="mt-1 block w-full border-gray-300 rounded-md"
+                >
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
             </div>
             <div>
                 <label className="block text-sm font-medium text-gray-700">Duration (days)</label>
@@ -87,40 +97,6 @@ export const CreateChallengeForm = ({ initialData, onSubmit }: CreateChallengeFo
                     className="mt-1 block w-full border-gray-300 rounded-md"
                     required
                 />
-            </div>
-            <div>
-                <label className="block text-sm font-medium text-gray-700">Description</label>
-                <textarea
-                    name="description"
-                    value={formData.description}
-                    onChange={handleChange}
-                    className="mt-1 block w-full border-gray-300 rounded-md"
-                    required
-                />
-            </div>
-            <div>
-                <label className="block text-sm font-medium text-gray-700">Deadline</label>
-                <input
-                    type="date"
-                    name="deadline"
-                    value={formData.deadline}
-                    onChange={handleChange}
-                    className="mt-1 block w-full border-gray-300 rounded-md"
-                    required
-                />
-            </div>
-            <div>
-                <label className="block text-sm font-medium text-gray-700">Status</label>
-                <select
-                    name="status"
-                    value={formData.status}
-                    onChange={handleChange}
-                    className="mt-1 block w-full border-gray-300 rounded-md"
-                >
-                    <option value="open">Open</option>
-                    <option value="ongoing">Ongoing</option>
-                    <option value="completed">Completed</option>
-                </select>
             </div>
             <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white rounded-md px-4 py-2">
                 {initialData ? "Update Challenge" : "Create Challenge"}

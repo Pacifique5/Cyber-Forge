@@ -105,8 +105,11 @@ export default function Navbar() {
         {/* desktop auth menu */}
         <div className="hidden lg:block relative" ref={authMenuRef}>
           <button
-            onClick={() => setShowAuthMenu(!showAuthMenu)}
-            className="bg-blue-dark hover:bg-blue-light duration-500 px-4 py-3 rounded-md text-white flex items-center gap-2"
+            onClick={() => {
+              console.log("Join the Program clicked");
+              setShowAuthMenu(!showAuthMenu);
+            }}
+            className="bg-blue-dark hover:bg-blue-light duration-500 px-4 py-3 rounded-md text-white flex items-center gap-2 cursor-pointer"
           >
             <UserPlus size={18} />
             Join the Program

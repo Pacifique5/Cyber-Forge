@@ -6,22 +6,22 @@ import Image from "next/image";
 export default function Section6() {
   const benefits = [
     {
-      icon: <Target className="h-5 w-5" />,
+      icon: <Target className="h-9 w-9" />,
       title: "Enhance Employment Path",
       description: "Network with talented individuals and learn from their experiences"
     },
     {
-      icon: <TrendingUp className="h-5 w-5" />,
+      icon: <TrendingUp className="h-9 w-9" />,
       title: "Personal Growth",
       description: "Challenge yourself, learn new skills, and expand your professional network"
     },
     {
-      icon: <Award className="h-5 w-5" />,
+      icon: <Award className="h-9 w-9" />,
       title: "Recognition & Prizes",
       description: "Gain valuable experience and knowledge to advance your career in the digital economy"
     },
     {
-      icon: <Users className="h-5 w-5" />,
+      icon: <Users className="h-9 w-9" />,
       title: "Learn from Experts",
       description: "Access insights and guidance from experienced professionals in digital careers"
     }
@@ -47,20 +47,22 @@ export default function Section6() {
               {benefits.map((benefit, index) => (
                 <div
                   key={index}
-                  className="group bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100"
+                  className="group bg-white rounded-xl p-10 min-h-[350px] flex flex-col shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100"
                 >
                   {/* Icon */}
-                  <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-blue-light/10 text-blue-light mb-4 group-hover:bg-blue-light group-hover:text-white transition-colors duration-300">
+                  <div className="inline-flex items-center justify-center w-18 h-18 rounded-lg bg-blue-light/10 text-blue-light mb-10 group-hover:bg-blue-light group-hover:text-white transition-colors duration-300">
                     {benefit.icon}
                   </div>
 
                   {/* Content */}
-                  <h3 className="font-bold text-lg text-gray-900 mb-2 group-hover:text-blue-light transition-colors duration-300">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    {benefit.description}
-                  </p>
+                  <div className="flex-grow flex flex-col justify-center">
+                    <h3 className="font-bold text-2xl text-gray-900 mb-6 group-hover:text-blue-light transition-colors duration-300">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-lg text-gray-600 leading-relaxed">
+                      {benefit.description}
+                    </p>
+                  </div>
 
                   {/* Hover effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-light/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>

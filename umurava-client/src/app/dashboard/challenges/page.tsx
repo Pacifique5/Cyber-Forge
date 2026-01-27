@@ -13,10 +13,10 @@ const ChallengesPage = () => {
     const dispatch = useDispatch<AppDispatch>();
     const { challenges, filters, loading, error } = useSelector((state: RootState) => state.challenges);
 
-    // Fetch challenges when component mounts or filters change
+    // Fetch challenges when component mounts
     useEffect(() => {
-        dispatch(fetchChallenges(filters));
-    }, [dispatch, filters]);
+        dispatch(fetchChallenges());
+    }, [dispatch]);
 
     // Handle filter changes
     const handleFilterChange = (newFilters: Partial<typeof filters>) => {

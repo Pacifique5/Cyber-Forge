@@ -2,8 +2,7 @@ export interface Challenge {
     id: string;
     title: string;
     description: string;
-    status: "open" | "ongoing" | "completed";
-    moneyPrize: number;
-    deadline: string;
+    difficulty: string;
     duration: number;
+    createdAt: string;
 }

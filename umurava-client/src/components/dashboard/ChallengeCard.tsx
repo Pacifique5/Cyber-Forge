@@ -4,8 +4,9 @@ type Challenge = {
     id: string;
     title: string;
     description: string;
-    moneyPrize: number;
-    deadline: string;
+    difficulty: string;
+    duration: number;
+    createdAt: string;
 };
 
 interface ChallengeCardProps {
@@ -20,8 +21,19 @@ export function ChallengeCard({challenge}: ChallengeCardProps) {
             <p className="text-gray-600">
                 {challenge.description ? challenge.description.slice(0, 100) : ""}...
             </p>
-            <p className="text-sm text-gray-500">
-                Deadline: {new Date(challenge.deadline).toLocaleDateString()}
+            <div className="flex justify-between items-center mt-2">
+                <p className="text-sm text-gray-500">
+                    Difficulty: <span className={`font-medium ${
+                        challenge.difficulty === 'easy' ? 'text-green-600' :
+                        challenge.difficulty === 'medium' ? 'text-yellow-600' : 'text-red-600'
+                    }`}>{challenge.difficulty}</span>
+                </p>
+                <p className="text-sm text-gray-500">
+                    Duration: {challenge.duration} days
+                </p>
+            </div>
+            <p className="text-xs text-gray-400 mt-1">
+                Created: {new Date(challenge.createdAt).toLocaleDateString()}
             </p>
         </div>
     );
