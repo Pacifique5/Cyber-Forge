@@ -8,7 +8,7 @@ import { UserAvatar } from "@/components/dashboard/UserAvatar";
 import { StatCard } from "@/components/dashboard/StatCard";
 
 
-import { RootState, AppDispatch } from "@/store/store";
+import { RootState, AppDispatch } from "@/store";
 
 const Dashboard = () => {
     const dispatch = useDispatch<AppDispatch>();

@@ -1,7 +1,6 @@
 import MainLayout from "@/layouts/MainLayout";
 import image from "../../../public/video.png";
 import Image from "next/image";
-import Case from "../../../public/icons/case.svg";
 import Challenge from "../../../public/challenge.png";
 import Link from "next/link";
 import { Briefcase, Target, Trophy } from "lucide-react";

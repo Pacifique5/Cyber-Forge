@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchChallengeDetails } from "@/store/challengesSlice"; // Importing fetchChallengeDetails
-import { RootState, AppDispatch } from "@/store/store"; // Correct types
+import { RootState, AppDispatch } from "@/store"; // Correct types
 import Link from "next/link";
 
 const ChallengeDetails = () => {
@@ -12,7 +12,7 @@ const ChallengeDetails = () => {
     const dispatch = useDispatch<AppDispatch>();
 
     // Select challenge details from the Redux store
-    const challenge = useSelector((state: RootState) => state.challenges.challenge);
+    const challenge = useSelector((state: RootState) => state.challenges.selectedChallenge);
     const loading = useSelector((state: RootState) => state.challenges.loading);
     const error = useSelector((state: RootState) => state.challenges.error);
 

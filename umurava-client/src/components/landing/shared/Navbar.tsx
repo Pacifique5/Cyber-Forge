@@ -41,7 +41,7 @@ export default function Navbar() {
     closeMenu();
   };
 
-  const handleNavClick = (link: any, e: React.MouseEvent) => {
+  const handleNavClick = (link: { isScroll?: boolean }, e: React.MouseEvent) => {
     if (link.isScroll) {
       handleContactClick(e);
     } else {

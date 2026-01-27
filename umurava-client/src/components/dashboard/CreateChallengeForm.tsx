@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/store/store";
 //import { createChallenge, updateChallenge } from "@/store/challengesSlice";
 
 // Define allowed status values
@@ -24,8 +22,6 @@ interface CreateChallengeFormProps {
 }
 
 export const CreateChallengeForm = ({ initialData, onSubmit }: CreateChallengeFormProps) => {
-    const dispatch = useDispatch<AppDispatch>();
-
     // Set the form state, using initialData if provided, or default values
     const [formData, setFormData] = useState<Challenge>({
         id: initialData?.id || "",

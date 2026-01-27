@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { RootState } from "./store";
+import { RootState } from "./index";
 
 // Declare the User interface here
 export interface User {

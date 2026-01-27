@@ -21,7 +21,7 @@ export default function ContactSection() {
             await new Promise(resolve => setTimeout(resolve, 1000));
             setSubmitMessage("Thank you! Your message has been sent successfully.");
             setFormData({ name: "", email: "", message: "" });
-        } catch (error) {
+        } catch {
             setSubmitMessage("Sorry, there was an error sending your message. Please try again.");
         } finally {
             setIsSubmitting(false);
@@ -44,7 +44,7 @@ export default function ContactSection() {
                         Get in Touch
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Have questions about our challenges or programs? We'd love to hear from you.
+                        Have questions about our challenges or programs? We&apos;d love to hear from you.
                     </p>
                 </div>
 

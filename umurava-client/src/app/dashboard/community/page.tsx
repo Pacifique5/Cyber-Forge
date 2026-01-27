@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchCommunityData } from "@/store/communitySlice";
-import { AppDispatch } from "@/store/store";
+import { AppDispatch } from "@/store";
 
 const CommunityPage = () => {
     const dispatch = useDispatch<AppDispatch>();

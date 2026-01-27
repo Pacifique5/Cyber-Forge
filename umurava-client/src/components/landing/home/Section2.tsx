@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Case from "../../../../public/icons/case.svg";
 import { Trophy, Target, Briefcase } from "lucide-react";
 
 export default function Section2() {
@@ -33,7 +31,7 @@ export default function Section2() {
           </h1>
           <p className="text-gray-600 text-lg max-w-3xl mx-auto">
             Join Skills Challenges Program to accelerate your career growth and
-            become part of Africa's largest workforce of digital professionals.
+            become part of Africa&apos;s largest workforce of digital professionals.
           </p>
         </div>
 

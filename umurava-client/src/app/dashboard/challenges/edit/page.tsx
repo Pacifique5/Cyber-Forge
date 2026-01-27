@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useRouter, useParams } from "next/navigation"; // ✅ Correct way to get params
 import { useSelector, useDispatch } from "react-redux";
 import { fetchChallengeDetails, updateChallenge } from "@/store/challengesSlice";
-import { RootState, AppDispatch } from "@/store/store";
+import { RootState, AppDispatch } from "@/store";
 import { CreateChallengeForm } from "@/components/dashboard/CreateChallengeForm";
 import { Challenge } from "@/types/challenge"; // Ensure this type exists
 

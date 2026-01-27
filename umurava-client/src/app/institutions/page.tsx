@@ -3,7 +3,6 @@ import MainLayout from "@/layouts/MainLayout";
 import Link from "next/link";
 import Image from "next/image";
 import Banner from "../../../public/Frame.png";
-import Case from "../../../public/icons/case.svg";
 import SKill from "../../../public/skill.png";
 import Ellipse1 from "../../../public/icons/ellipse1.svg";
 import Ellipse2 from "../../../public/icons/ellipse2.svg";

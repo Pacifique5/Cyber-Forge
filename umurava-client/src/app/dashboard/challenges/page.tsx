@@ -3,7 +3,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchChallenges, setChallengeFilters } from "@/store/challengesSlice";
-import { RootState, AppDispatch } from "@/store/store";
+import { RootState, AppDispatch } from "@/store";
+import { Challenge } from "@/types/challenge";
 import ChallengeFilters from "@/components/dashboard/ChallengeFilters";
 import { ChallengeCard } from "@/components/dashboard/ChallengeCard";
 import Link from "next/link";
@@ -69,7 +70,7 @@ const ChallengesPage = () => {
 
             {/* Challenges List */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">
-                {challenges.map((challenge) => (
+                {challenges.map((challenge: Challenge) => (
                     <ChallengeCard key={challenge.id} challenge={challenge} />
                 ))}
             </div>

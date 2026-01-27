@@ -1,7 +1,3 @@
-import Case from "../../../../public/icons/case1.svg";
-import Badge from "../../../../public/icons/badge.svg";
-import Prize from "../../../../public/icons/prize.svg";
-import Trend from "../../../../public/icons/trend.svg";
 import Banner from "../../../../public/hero/skillBanner.png";
 import { Target, TrendingUp, Award, Users } from "lucide-react";
 
@@ -40,7 +36,7 @@ export default function Section6() {
           </h1>
           <p className="text-gray-600 text-lg max-w-3xl mx-auto">
             Join Skills Challenges Program to accelerate your career growth and
-            become part of Africa's largest workforce of digital professionals.
+            become part of Africa&apos;s largest workforce of digital professionals.
           </p>
         </div>
 
