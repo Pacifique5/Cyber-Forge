@@ -102,14 +102,14 @@ const CommunityPage = () => {
             {/* Stats Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {communityStats.map((stat, index) => (
-                    <div key={index} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+                    <div key={index} className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm transition-colors duration-300">
                         <div className="flex items-center gap-4">
                             <div className={`${stat.color} p-3 rounded-xl`}>
                                 <stat.icon className="h-6 w-6 text-white" />
                             </div>
                             <div>
-                                <p className="text-sm text-gray-600">{stat.label}</p>
-                                <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</p>
+                                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{stat.value}</p>
                             </div>
                         </div>
                     </div>
@@ -117,8 +117,8 @@ const CommunityPage = () => {
             </div>
 
             {/* Tabs */}
-            <div className="bg-white rounded-xl border border-gray-100 shadow-sm">
-                <div className="border-b border-gray-200">
+            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm transition-colors duration-300">
+                <div className="border-b border-gray-200 dark:border-gray-700">
                     <nav className="flex space-x-8 px-6">
                         {tabs.map((tab) => (
                             <button
@@ -126,8 +126,8 @@ const CommunityPage = () => {
                                 onClick={() => setActiveTab(tab.id)}
                                 className={`flex items-center gap-2 py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
                                     activeTab === tab.id
-                                        ? 'border-blue-light text-blue-light'
-                                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                        ? 'border-blue-light text-blue-light dark:text-blue-400'
+                                        : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
                                 }`}
                             >
                                 <tab.icon className="h-4 w-4" />
@@ -143,60 +143,60 @@ const CommunityPage = () => {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                             {/* Welcome Message */}
                             <div className="space-y-6">
-                                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6">
-                                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                                <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-6 transition-colors duration-300">
+                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
                                         Welcome to the Community, {user?.firstName}! 🎉
                                     </h3>
-                                    <p className="text-gray-600 mb-4">
+                                    <p className="text-gray-600 dark:text-gray-400 mb-4">
                                         Join thousands of developers, designers, and tech enthusiasts building amazing projects together.
                                     </p>
                                     <div className="flex gap-3">
                                         <button className="bg-blue-light text-white px-4 py-2 rounded-lg hover:bg-blue-dark transition-colors">
                                             Complete Profile
                                         </button>
-                                        <button className="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                                        <button className="border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                                             Browse Challenges
                                         </button>
                                     </div>
                                 </div>
 
                                 {/* Quick Links */}
-                                <div className="bg-white border border-gray-200 rounded-xl p-6">
-                                    <h4 className="font-semibold text-gray-900 mb-4">Quick Links</h4>
+                                <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 transition-colors duration-300">
+                                    <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">Quick Links</h4>
                                     <div className="space-y-3">
-                                        <a href="#" className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                                            <Github className="h-5 w-5 text-gray-600" />
-                                            <span className="text-gray-700">GitHub Organization</span>
-                                            <ExternalLink className="h-4 w-4 text-gray-400 ml-auto" />
+                                        <a href="#" className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                            <Github className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                                            <span className="text-gray-700 dark:text-gray-300">GitHub Organization</span>
+                                            <ExternalLink className="h-4 w-4 text-gray-400 dark:text-gray-500 ml-auto" />
                                         </a>
-                                        <a href="#" className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                                            <Linkedin className="h-5 w-5 text-gray-600" />
-                                            <span className="text-gray-700">LinkedIn Group</span>
-                                            <ExternalLink className="h-4 w-4 text-gray-400 ml-auto" />
+                                        <a href="#" className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                            <Linkedin className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                                            <span className="text-gray-700 dark:text-gray-300">LinkedIn Group</span>
+                                            <ExternalLink className="h-4 w-4 text-gray-400 dark:text-gray-500 ml-auto" />
                                         </a>
-                                        <a href="#" className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                                            <Twitter className="h-5 w-5 text-gray-600" />
-                                            <span className="text-gray-700">Twitter Community</span>
-                                            <ExternalLink className="h-4 w-4 text-gray-400 ml-auto" />
+                                        <a href="#" className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                            <Twitter className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                                            <span className="text-gray-700 dark:text-gray-300">Twitter Community</span>
+                                            <ExternalLink className="h-4 w-4 text-gray-400 dark:text-gray-500 ml-auto" />
                                         </a>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Recent Activities */}
-                            <div className="bg-white border border-gray-200 rounded-xl p-6">
-                                <h4 className="font-semibold text-gray-900 mb-4">Recent Activities</h4>
+                            <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 transition-colors duration-300">
+                                <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">Recent Activities</h4>
                                 <div className="space-y-4">
                                     {recentActivities.slice(0, 5).map((activity, index) => (
                                         <div key={index} className="flex items-start gap-3">
-                                            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                                                <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                                            <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                                                <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <p className="text-sm text-gray-900">
+                                                <p className="text-sm text-gray-900 dark:text-gray-100">
                                                     <span className="font-medium">{activity.user}</span> {activity.action} {activity.target}
                                                 </p>
-                                                <p className="text-xs text-gray-500">{activity.time}</p>
+                                                <p className="text-xs text-gray-500 dark:text-gray-400">{activity.time}</p>
                                             </div>
                                         </div>
                                     ))}
@@ -209,26 +209,26 @@ const CommunityPage = () => {
                     {activeTab === 'members' && (
                         <div className="space-y-6">
                             <div className="flex justify-between items-center">
-                                <h3 className="text-lg font-semibold text-gray-900">Top Contributors</h3>
-                                <button className="text-blue-light hover:text-blue-dark font-medium">View All</button>
+                                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Top Contributors</h3>
+                                <button className="text-blue-light hover:text-blue-dark dark:text-blue-400 dark:hover:text-blue-300 font-medium">View All</button>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {topMembers.map((member, index) => (
-                                    <div key={index} className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+                                    <div key={index} className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:shadow-md transition-all duration-300">
                                         <div className="flex items-center gap-4 mb-4">
                                             <div className="w-12 h-12 bg-blue-light text-white rounded-full flex items-center justify-center font-semibold">
                                                 {member.avatar}
                                             </div>
                                             <div className="flex-1">
-                                                <h4 className="font-semibold text-gray-900">{member.name}</h4>
-                                                <p className="text-sm text-gray-600">{member.role}</p>
+                                                <h4 className="font-semibold text-gray-900 dark:text-gray-100">{member.name}</h4>
+                                                <p className="text-sm text-gray-600 dark:text-gray-400">{member.role}</p>
                                             </div>
                                             <div className="flex items-center gap-1">
                                                 <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                                                <span className="text-sm font-medium">{member.rating}</span>
+                                                <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{member.rating}</span>
                                             </div>
                                         </div>
-                                        <div className="flex items-center justify-between text-sm text-gray-600">
+                                        <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
                                             <div className="flex items-center gap-1">
                                                 <Trophy className="h-4 w-4" />
                                                 <span>{member.challenges} challenges</span>
@@ -247,24 +247,24 @@ const CommunityPage = () => {
                     {/* Activities Tab */}
                     {activeTab === 'activities' && (
                         <div className="space-y-6">
-                            <h3 className="text-lg font-semibold text-gray-900">Community Activities</h3>
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Community Activities</h3>
                             <div className="space-y-4">
                                 {recentActivities.map((activity, index) => (
-                                    <div key={index} className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl">
-                                        <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                                            <Trophy className="h-5 w-5 text-blue-600" />
+                                    <div key={index} className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-xl transition-colors duration-300">
+                                        <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                                            <Trophy className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                                         </div>
                                         <div className="flex-1">
-                                            <p className="text-gray-900">
+                                            <p className="text-gray-900 dark:text-gray-100">
                                                 <span className="font-medium">{activity.user}</span> {activity.action} <span className="font-medium">{activity.target}</span>
                                             </p>
-                                            <p className="text-sm text-gray-500">{activity.time}</p>
+                                            <p className="text-sm text-gray-500 dark:text-gray-400">{activity.time}</p>
                                         </div>
                                         <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                                            activity.type === 'challenge' ? 'bg-blue-100 text-blue-800' :
-                                            activity.type === 'hackathon' ? 'bg-purple-100 text-purple-800' :
-                                            activity.type === 'achievement' ? 'bg-green-100 text-green-800' :
-                                            'bg-gray-100 text-gray-800'
+                                            activity.type === 'challenge' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300' :
+                                            activity.type === 'hackathon' ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300' :
+                                            activity.type === 'achievement' ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300' :
+                                            'bg-gray-100 dark:bg-gray-600 text-gray-800 dark:text-gray-300'
                                         }`}>
                                             {activity.type}
                                         </span>
@@ -278,37 +278,37 @@ const CommunityPage = () => {
                     {activeTab === 'events' && (
                         <div className="space-y-6">
                             <div className="flex justify-between items-center">
-                                <h3 className="text-lg font-semibold text-gray-900">Upcoming Events</h3>
+                                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Upcoming Events</h3>
                                 <button className="bg-blue-light text-white px-4 py-2 rounded-lg hover:bg-blue-dark transition-colors">
                                     Create Event
                                 </button>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {upcomingEvents.map((event, index) => (
-                                    <div key={index} className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+                                    <div key={index} className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:shadow-md transition-all duration-300">
                                         <div className="flex items-start justify-between mb-4">
                                             <div>
-                                                <h4 className="font-semibold text-gray-900 mb-1">{event.title}</h4>
-                                                <div className="flex items-center gap-2 text-sm text-gray-600">
+                                                <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">{event.title}</h4>
+                                                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                                                     <Calendar className="h-4 w-4" />
                                                     <span>{new Date(event.date).toLocaleDateString()}</span>
                                                 </div>
                                             </div>
                                             <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                                                event.type === 'Hackathon' ? 'bg-purple-100 text-purple-800' :
-                                                event.type === 'Workshop' ? 'bg-green-100 text-green-800' :
-                                                event.type === 'Challenge' ? 'bg-blue-100 text-blue-800' :
-                                                'bg-gray-100 text-gray-800'
+                                                event.type === 'Hackathon' ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300' :
+                                                event.type === 'Workshop' ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300' :
+                                                event.type === 'Challenge' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300' :
+                                                'bg-gray-100 dark:bg-gray-600 text-gray-800 dark:text-gray-300'
                                             }`}>
                                                 {event.type}
                                             </span>
                                         </div>
                                         <div className="flex items-center justify-between">
-                                            <div className="flex items-center gap-2 text-sm text-gray-600">
+                                            <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                                                 <Users className="h-4 w-4" />
                                                 <span>{event.participants} participants</span>
                                             </div>
-                                            <button className="text-blue-light hover:text-blue-dark font-medium text-sm">
+                                            <button className="text-blue-light hover:text-blue-dark dark:text-blue-400 dark:hover:text-blue-300 font-medium text-sm">
                                                 Join Event
                                             </button>
                                         </div>
