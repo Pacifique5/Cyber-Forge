@@ -55,14 +55,14 @@ export default function Section4() {
   }, []);
 
   return (
-    <div className="p-4 md:p-8">
+    <div className="p-4 md:p-8 bg-white dark:bg-gray-900 transition-colors duration-300">
       {/* message header */}
       <div className="text-center mx-10 md:mx-20">
-        <h1 className="text-3xl md:text-[40px] font-bold md:font-extrabold p-3">
+        <h1 className="text-3xl md:text-[40px] font-bold md:font-extrabold p-3 text-gray-900 dark:text-gray-100">
           Skills Challenges Cover various in-demand skills and Careers for the
           digital economy
         </h1>
-        <p className="text-gray-800 text-[14px] sm:text-[16px] mt-2">
+        <p className="text-gray-800 dark:text-gray-300 text-[14px] sm:text-[16px] mt-2">
           Explore the projects that various talents are working on.
         </p>
       </div>
@@ -76,7 +76,7 @@ export default function Section4() {
             className={`px-6 py-2 text-sm sm:text-base font-medium rounded-md cursor-pointer transition-all duration-300 ${
               skill === activeSkill
                 ? "bg-blue-light text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-blue-100"
+                : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-600"
             }`}
           >
             {skill}
@@ -86,7 +86,7 @@ export default function Section4() {
 
       {/* The carousel */}
       <div className="p-4 md:p-8 mt-8 md:mt-16">
-        <div className="relative flex flex-col items-center overflow-hidden -z-10">
+        <div className="relative flex flex-col items-center overflow-hidden">
           {/* Carousel container */}
           <div
             className="flex transition-transform duration-500 ease-in-out w-full"
@@ -95,19 +95,19 @@ export default function Section4() {
             {slides.map((slide, index) => (
               <div
                 key={index}
-                className="min-w-full flex flex-col md:flex-row gap-6 items-center bg-gray-100 rounded-lg shadow-lg p-6"
+                className="min-w-full flex flex-col md:flex-row gap-6 items-center bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-colors duration-300"
               >
                 {/* Left side: Logo and description */}
                 <div className="w-full md:w-1/2">
-                  <div className="bg-white rounded-md h-16 w-16 p-4">
+                  <div className="bg-white dark:bg-gray-700 rounded-md h-16 w-16 p-4 transition-colors duration-300">
                     <Image src={slide.logo} alt="company logo" />
                   </div>
-                  <p className="text-gray-600 text-[14px] sm:text-[16px] my-2 font-[100]">
+                  <p className="text-gray-600 dark:text-gray-300 text-[14px] sm:text-[16px] my-2 font-[100]">
                     {slide.description}
                   </p>
                   <a
                     href="#"
-                    className="text-blue-light font-bold mt-4 inline-flex items-center"
+                    className="text-blue-light dark:text-blue-400 font-bold mt-4 inline-flex items-center"
                   >
                     Learn more
                     <span className="ml-4 h-8 w-8 rounded-full bg-blue-light text-white inline-flex items-center justify-center">
@@ -133,8 +133,8 @@ export default function Section4() {
             {slides.map((_, index) => (
               <span
                 key={index}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  currentSlide === index ? "bg-blue-600" : "bg-gray-400"
+                className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  currentSlide === index ? "bg-blue-600" : "bg-gray-400 dark:bg-gray-500"
                 }`}
                 onClick={() => setCurrentSlide(index)}
               ></span>

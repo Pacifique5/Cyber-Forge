@@ -52,12 +52,12 @@ export default function Section7() {
   };
 
   return (
-    <div className="px-10 md:px-20">
+    <div className="px-10 md:px-20 bg-white dark:bg-gray-900 transition-colors duration-300">
       <div>
-        <h1 className="text-2xl md:text-4xl font-bold md:font-extrabold">
+        <h1 className="text-2xl md:text-4xl font-bold md:font-extrabold text-gray-900 dark:text-gray-100">
           Users are in Love with Skills <br /> Challenges Program
         </h1>
-        <p className="text-gray-800 text-[14px] sm:text-[16px] mt-2">
+        <p className="text-gray-800 dark:text-gray-300 text-[14px] sm:text-[16px] mt-2">
           See what our clients say about working with us. Their success <br />{" "}
           speaks for our dedication and expertise.
         </p>
@@ -70,14 +70,14 @@ export default function Section7() {
             <div
               key={i}
               id={`testimonial-${i}`}
-              className="border border-gray-300 rounded-md py-3 px-5 flex-shrink-0 w-[300px]"
+              className="border border-gray-300 dark:border-gray-600 rounded-md py-3 px-5 flex-shrink-0 w-[300px] bg-white dark:bg-gray-800 transition-colors duration-300"
             >
               <div className="bg-blue-light h-[150px] rounded-md"></div>
               <div className="flex gap-1 items-center mt-3">
                 <div className="h-10 w-10 bg-blue-light rounded-full"></div>
                 <div>
-                  <h1 className="font-semibold">{test.name}</h1>
-                  <p className="text-sm text-gray-600">{test.role}</p>
+                  <h1 className="font-semibold text-gray-900 dark:text-gray-100">{test.name}</h1>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{test.role}</p>
                 </div>
               </div>
             </div>
@@ -92,7 +92,7 @@ export default function Section7() {
             key={index}
             onClick={() => handleDotClick(index)}
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              currentTestimonial === index ? "bg-blue-600" : "bg-gray-400"
+              currentTestimonial === index ? "bg-blue-600" : "bg-gray-400 dark:bg-gray-500"
             }`}
           ></button>
         ))}
