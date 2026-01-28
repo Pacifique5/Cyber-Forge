@@ -17,8 +17,13 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         {/* Top section with logo and social icons */}
         <div className="flex justify-between items-center mb-6">
-          <Link href="/" className="flex items-center">
-            <Image src="/talentbridge.jpeg" alt="TalentBridge logo" height={45} width={60} />
+          <Link href="/" className="flex items-center gap-3">
+            <div className="bg-black rounded-lg p-2">
+              <Image src="/talentbridge.jpeg" alt="TalentBridge logo" height={30} width={36} className="rounded" />
+            </div>
+            <div className="text-2xl font-bold text-white">
+              TalentBridge
+            </div>
           </Link>
           <div className="flex gap-4">
             <Link href="#" className="bg-white p-2 rounded-full">
