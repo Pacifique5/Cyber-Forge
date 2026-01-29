@@ -7,10 +7,14 @@
     "dev": "nodemon server.js",
     "build": "npx prisma generate",
     "migrate": "npx prisma migrate deploy",
-    "db:push": "npx prisma db push",
-    "postinstall": "npx prisma generate"
+    "db:push": "npx prisma db push"
   },
-  "keywords": ["cybersecurity", "education", "vulnerability", "assessment"],
+  "keywords": [
+    "cybersecurity",
+    "education",
+    "vulnerability",
+    "assessment"
+  ],
   "author": "CyberForge Team",
   "license": "MIT",
   "description": "CyberForge API - Cybersecurity Education Platform Backend",
