@@ -22,6 +22,7 @@ import {
 import { RootState, AppDispatch } from "@/store";
 import { Challenge } from "@/types/challenge";
 import { challengeService } from "@/services/challengeService";
+import VulnerabilityReportForm from "@/components/dashboard/VulnerabilityReportForm";
 import Link from "next/link";
 
 const ChallengeDetailPage = () => {
@@ -154,28 +155,83 @@ const ChallengeDetailPage = () => {
           <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-8">
             <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
               <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
-              Requirements & Objectives
+              Challenge Objectives
             </h2>
             <div className="space-y-4">
-              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
-                <h3 className="font-medium text-blue-900 dark:text-blue-300 mb-2">What you'll learn:</h3>
-                <ul className="text-sm text-blue-800 dark:text-blue-400 space-y-1">
-                  <li>• Problem-solving and analytical thinking</li>
-                  <li>• Technical skills relevant to the challenge</li>
-                  <li>• Best practices and industry standards</li>
-                  <li>• Collaboration and communication skills</li>
+              <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border border-red-200 dark:border-red-800">
+                <h3 className="font-medium text-red-900 dark:text-red-300 mb-2 flex items-center gap-2">
+                  <AlertCircle className="h-4 w-4" />
+                  🎯 Your Mission:
+                </h3>
+                <ul className="text-sm text-red-800 dark:text-red-400 space-y-1">
+                  <li>• Explore the target website thoroughly</li>
+                  <li>• Identify security vulnerabilities and weaknesses</li>
+                  <li>• Document your findings with evidence</li>
+                  <li>• Submit a detailed vulnerability report</li>
                 </ul>
               </div>
+              
+              {/* Target Website Section */}
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                <h3 className="font-medium text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2">
+                  <Target className="h-4 w-4" />
+                  🌐 Target Website:
+                </h3>
+                <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-blue-300 dark:border-blue-600">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-mono text-sm text-blue-700 dark:text-blue-300">
+                        https://vulnerable-app.talentbridge.com
+                      </p>
+                      <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">
+                        ⚠️ This is a controlled environment for educational purposes
+                      </p>
+                    </div>
+                    <a
+                      href="https://vulnerable-app.talentbridge.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
+                    >
+                      <Play className="h-4 w-4" />
+                      Launch Target
+                    </a>
+                  </div>
+                </div>
+              </div>
+
               <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-4">
-                <h3 className="font-medium text-green-900 dark:text-green-300 mb-2">Prerequisites:</h3>
+                <h3 className="font-medium text-green-900 dark:text-green-300 mb-2">📚 What you'll learn:</h3>
                 <ul className="text-sm text-green-800 dark:text-green-400 space-y-1">
-                  <li>• Basic understanding of the topic area</li>
-                  <li>• Access to required tools and resources</li>
-                  <li>• Commitment to complete within the timeframe</li>
+                  <li>• Web application security assessment techniques</li>
+                  <li>• Common vulnerability identification (OWASP Top 10)</li>
+                  <li>• Security testing methodologies</li>
+                  <li>• Professional vulnerability reporting</li>
+                </ul>
+              </div>
+              
+              <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-4">
+                <h3 className="font-medium text-yellow-900 dark:text-yellow-300 mb-2">🔧 Recommended Tools:</h3>
+                <ul className="text-sm text-yellow-800 dark:text-yellow-400 space-y-1">
+                  <li>• Browser Developer Tools (F12)</li>
+                  <li>• Burp Suite Community Edition</li>
+                  <li>• OWASP ZAP (Free)</li>
+                  <li>• Postman for API testing</li>
                 </ul>
               </div>
             </div>
           </div>
+
+          {/* Vulnerability Reporting Section */}
+          {isParticipating && (
+            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-8">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
+                <AlertCircle className="h-5 w-5 text-orange-600 dark:text-orange-400" />
+                Submit Vulnerability Report
+              </h2>
+              <VulnerabilityReportForm challengeId={challengeId} />
+            </div>
+          )}
         </div>
 
         {/* Sidebar */}
