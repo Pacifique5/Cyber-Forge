@@ -7,7 +7,8 @@
     "dev": "nodemon server.js",
     "build": "npx prisma generate",
     "migrate": "npx prisma migrate deploy",
-    "db:push": "npx prisma db push"
+    "db:push": "npx prisma db push",
+    "postinstall": "npx prisma generate"
   },
   "keywords": ["cybersecurity", "education", "vulnerability", "assessment"],
   "author": "CyberForge Team",

@@ -18,17 +18,31 @@ generator client {
 
 **Solution**: Fixed the datasource configuration in schema.prisma
 
-### 3. Build Command Optimization
-**Problem**: Using `prisma migrate deploy` which requires existing migrations
+### 3. Directory Structure Issue
+**Problem**: Render was trying to run commands from root directory instead of `Umurava_api`
 
-**Solution**: Updated `render.yaml` to use `prisma db push` for initial deployment
+**Solution**: 
+- Moved `render.yaml` to root directory
+- Added `rootDir: Umurava_api` to specify the correct working directory
+- Added `postinstall` script to package.json for automatic Prisma generation
+
+### 4. Permission Issues
+**Problem**: Prisma commands failing due to permission/path issues
+
+**Solution**: Simplified build process with proper directory structure
+
+## Files Changed
+
+- ✅ `Umurava_api/prisma/schema.prisma` - Added binary targets and fixed DATABASE_URL
+- ✅ `render.yaml` - Moved to root with proper rootDir configuration
+- ✅ `Umurava_api/package.json` - Added postinstall script
 
 ## Deployment Steps
 
 1. **Commit the changes**:
    ```bash
    git add .
-   git commit -m "Fix Prisma deployment for Render.com"
+   git commit -m "Fix Render deployment: directory structure and Prisma config"
    git push
    ```
 
@@ -38,15 +52,18 @@ generator client {
    - Or push to your connected Git branch
 
 3. **Monitor the deployment**:
-   - The build should now succeed with the correct binary targets
-   - Database should connect properly with the fixed URL
+   - Build should run from correct directory
+   - Prisma should generate automatically via postinstall
+   - Database should connect properly
 
 ## What Changed
 
 - ✅ Added `debian-openssl-3.0.x` to binaryTargets
 - ✅ Fixed DATABASE_URL syntax error
-- ✅ Changed build command from `migrate deploy` to `db push`
-- ✅ Maintained all existing functionality
+- ✅ Moved render.yaml to root directory
+- ✅ Added rootDir configuration for proper directory structure
+- ✅ Added postinstall script for automatic Prisma generation
+- ✅ Simplified build command
 
 ## Next Steps
 

@@ -3,7 +3,8 @@ services:
     name: cyberforge-api
     env: node
     plan: free
-    buildCommand: npm install && npx prisma generate && npx prisma db push
+    rootDir: Umurava_api
+    buildCommand: npm install && npx prisma db push
     startCommand: npm start
     envVars:
       - key: NODE_ENV
