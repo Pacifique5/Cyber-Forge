@@ -19,10 +19,10 @@ export default function Footer() {
         <div className="flex justify-between items-center mb-6">
           <Link href="/" className="flex items-center gap-3">
             <div className="bg-black rounded-lg p-2">
-              <Image src="/talentbridge.jpeg" alt="TalentBridge logo" height={30} width={36} className="rounded" />
+              <Image src="/talentbridge.jpeg" alt="CyberForge logo" height={30} width={36} className="rounded" />
             </div>
             <div className="text-2xl font-bold text-white">
-              TalentBridge
+              CyberForge
             </div>
           </Link>
           <div className="flex gap-4">
@@ -104,7 +104,7 @@ export default function Footer() {
         {/* Footer Bottom */}
         <div className="border-t border-gray-700 pt-4 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-400">
-            Copyright © All Rights Reserved SawaPay 2024.
+            Copyright © All Rights Reserved CyberForge 2024.
           </p>
           <div className="text-sm text-gray-400 space-x-4">
             <Link href="/privacy" className="hover:text-white">

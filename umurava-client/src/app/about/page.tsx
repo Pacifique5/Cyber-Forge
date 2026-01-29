@@ -55,7 +55,7 @@ export default function Page() {
               src={image}
               height={500}
               width={500}
-              alt="TalentBridge banner"
+              alt="CyberForge banner"
               className="max-w-full h-auto"
             />
           </div>
@@ -122,8 +122,8 @@ export default function Page() {
         <div className="flex flex-col lg:flex-row items-center gap-[2rem] md:gap-[5rem] lg:gap-[9rem] mx-8 mt-[6rem] md:mt-[10rem]">
           <div className="flex flex-col gap-3 md:pl-[3rem]">
             <h1 className="text-blue-light dark:text-blue-400 text-3xl md:text-[40px] font-bold md:font-extrabold">
-              Skills Challenges Program is built on the TalentBridge Talent
-              Marketplace Platform
+              Skills Challenges Program is built on the CyberForge Security
+              Training Platform
             </h1>
             <p className="text-gray-800 dark:text-gray-300 text-[14px] sm:text-[16px]">
               A Project-based Learning Solution aimed at providing young and
@@ -132,9 +132,9 @@ export default function Page() {
               organizations.
             </p>
             <p className="text-gray-800 dark:text-gray-300 text-[14px] sm:text-[16px]">
-              TalentBridge Skills Challenges enables young talents to build a
+              CyberForge Skills Challenges enables cybersecurity professionals to build a
               portfolio and experience that increases their readiness to access
-              job opportunities and projects.
+              security job opportunities and projects.
             </p>
             <Link
               href="/signup"
@@ -146,7 +146,7 @@ export default function Page() {
 
           <div className="">
             <div className="md:h-[430px] md:w-[320px]">
-              <Image src={Challenge} height={380} alt="TalentBridge hero image" />
+              <Image src={Challenge} height={380} alt="CyberForge hero image" />
             </div>
           </div>
         </div>

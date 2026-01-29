@@ -76,7 +76,7 @@ export default function Section6() {
             <div className="relative">
               <Image 
                 src={Banner} 
-                alt="TalentBridge banner" 
+                alt="CyberForge banner" 
                 className="w-full h-auto rounded-2xl shadow-lg"
               />
               {/* Decorative elements */}

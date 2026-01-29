@@ -4,8 +4,8 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "TalentBridge | Skills Challenges",
-  description: "EdTech Product called Skills Challenges - Connecting talent with opportunities through project-based learning",
+  title: "CyberForge | Cybersecurity Skills Platform",
+  description: "Master cybersecurity through hands-on challenges, vulnerability assessments, and real-world penetration testing scenarios",
 };
 
 export default function RootLayout({

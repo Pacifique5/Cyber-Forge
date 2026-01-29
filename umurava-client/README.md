@@ -1,15 +1,18 @@
-# TalentBridge - Skills Challenges Platform
+# CyberForge - Cybersecurity Skills Platform
 
-TalentBridge is an innovative EdTech platform that connects talented individuals with real-world project opportunities through skills challenges and hackathons. Our mission is to bridge the gap between education and employment by providing hands-on, project-based learning experiences.
+CyberForge is an innovative cybersecurity education platform that empowers security professionals through hands-on vulnerability assessments, penetration testing challenges, and real-world security scenarios. Our mission is to forge the next generation of cyber defenders through practical, project-based learning experiences.
 
-## 🚀 Features
+## 🔒 Features
 
-- **Skills Challenges**: Real-world projects from partner companies
-- **Portfolio Building**: Showcase your skills through completed challenges
-- **Career Development**: Connect with employers and accelerate your career growth
-- **Community**: Network with talented professionals across Africa and beyond
-- **Mentorship**: Get guidance from experienced industry professionals
-- **Recognition**: Earn certificates and prizes for your achievements
+- **Security Challenges**: Real-world vulnerability assessment scenarios
+- **Penetration Testing**: Hands-on ethical hacking experiences
+- **Vulnerability Reporting**: Professional security report writing
+- **Skills Development**: Master OWASP Top 10 and security methodologies
+- **Portfolio Building**: Showcase your cybersecurity expertise
+- **Career Growth**: Connect with security employers and advance your career
+- **Community**: Network with cybersecurity professionals worldwide
+- **Mentorship**: Learn from experienced security practitioners
+- **Certifications**: Earn recognition for your security achievements
 
 ## 🛠️ Tech Stack
 
@@ -18,7 +21,7 @@ TalentBridge is an innovative EdTech platform that connects talented individuals
 - **Database**: PostgreSQL
 - **Authentication**: JWT-based authentication
 - **State Management**: Redux Toolkit
-- **UI Components**: Lucide React icons, custom components
+- **UI Components**: Lucide React icons, custom security-focused components
 
 ## 🏃‍♂️ Getting Started
 
@@ -41,10 +44,11 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 ## 📁 Project Structure
 
 ```
-talentbridge/
+cyberforge/
 ├── src/
 │   ├── app/                 # Next.js app directory
 │   ├── components/          # Reusable UI components
+│   │   └── dashboard/       # Security challenge components
 │   ├── contexts/           # React contexts (Theme, etc.)
 │   ├── layouts/            # Layout components
 │   ├── services/           # API services
@@ -57,9 +61,18 @@ talentbridge/
 ## 🎨 Design System
 
 - **Primary Colors**: Blue Light (#2B71F0), Blue Dark (#001A40)
-- **Typography**: Modern, clean fonts with proper hierarchy
-- **Dark Mode**: Full dark mode support across all components
-- **Responsive**: Mobile-first design approach
+- **Security Theme**: Professional, trust-inspiring design
+- **Typography**: Clean, readable fonts for technical content
+- **Dark Mode**: Full dark mode support for extended coding sessions
+- **Responsive**: Mobile-first design for security professionals on-the-go
+
+## 🔐 Security Features
+
+- **Vulnerability Assessment**: Comprehensive security testing workflows
+- **Report Generation**: Professional vulnerability reporting system
+- **Target Management**: Dynamic target URL configuration
+- **Progress Tracking**: Detailed assessment progress monitoring
+- **Evidence Collection**: Structured proof-of-concept documentation
 
 ## 🚀 Deployment
 
@@ -73,4 +86,12 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 🤝 Contributing
 
-We welcome contributions! Please feel free to submit a Pull Request.
+We welcome contributions from the cybersecurity community! Please feel free to submit a Pull Request.
+
+## ⚠️ Ethical Use
+
+CyberForge is designed for educational purposes and ethical security testing only. Users must:
+- Only test applications they own or have explicit permission to test
+- Follow responsible disclosure principles
+- Respect all applicable laws and regulations
+- Use knowledge gained for defensive purposes only
