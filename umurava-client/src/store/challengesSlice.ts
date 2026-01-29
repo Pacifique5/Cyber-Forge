@@ -1,15 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { challengeService } from "@/services/challengeService";
-
-// Define Challenge type
-interface Challenge {
-    id: string;
-    title: string;
-    description: string;
-    difficulty: string;
-    duration: number;
-    createdAt: string;
-}
+import { Challenge } from "@/types/challenge"; // Import from types file
 
 // Define Filters type
 interface ChallengeFilters {

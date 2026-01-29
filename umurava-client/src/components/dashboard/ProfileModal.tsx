@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { X, User, Camera, Save } from "lucide-react";
+import { X, Camera, Save } from "lucide-react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 
@@ -13,6 +13,7 @@ interface ProfileModalProps {
 export default function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
   const { user } = useSelector((state: RootState) => state.auth);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [loading, setLoading] = useState(false);
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     firstName: user?.firstName || "",
@@ -37,11 +38,34 @@ export default function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
     fileInputRef.current?.click();
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement profile update with image
-    console.log("Profile update:", formData, "Image:", profileImage);
-    onClose();
+    setLoading(true);
+    
+    try {
+      const { userService } = await import('@/services/userService');
+      
+      // Update profile data
+      const result = await userService.updateProfile({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email
+      });
+      
+      // Upload profile image if selected
+      if (profileImage && fileInputRef.current?.files?.[0]) {
+        await userService.uploadProfileImage(fileInputRef.current.files[0]);
+      }
+      
+      console.log('✅ Profile updated successfully:', result);
+      alert('Profile updated successfully!');
+      onClose();
+    } catch (error: any) {
+      console.error('❌ Failed to update profile:', error);
+      alert(`Failed to update profile: ${error.message}`);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -156,10 +180,17 @@ export default function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
               </button>
               <button
                 type="submit"
-                className="flex-1 px-4 py-2 bg-blue-light text-white rounded-lg hover:bg-blue-dark transition-colors flex items-center justify-center gap-2"
+                disabled={loading}
+                className="flex-1 px-4 py-2 bg-blue-light text-white rounded-lg hover:bg-blue-dark transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
               >
-                <Save className="h-4 w-4" />
-                Save Changes
+                {loading ? (
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                ) : (
+                  <>
+                    <Save className="h-4 w-4" />
+                    Save Changes
+                  </>
+                )}
               </button>
             </div>
           </form>

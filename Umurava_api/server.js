@@ -1,4 +1,10 @@
-const app = require("./app"); // Use require instead of import
+const app = require("./app");
 const { PORT } = require("./config/env");
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const port = PORT || process.env.PORT || 5000;
+
+app.listen(port, '0.0.0.0', () => {
+  console.log(`🚀 CyberForge API Server running on port ${port}`);
+  console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`🔗 Health check: http://localhost:${port}/api/health`);
+});

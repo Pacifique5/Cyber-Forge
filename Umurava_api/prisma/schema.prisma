@@ -8,24 +8,49 @@ datasource db {
 }
 
 model User {
-  id         String      @id @default(uuid())
-  email      String      @unique
-  password   String
-  firstName  String
-  lastName   String
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
-  challenges Challenge[]
+  id                    String                 @id @default(uuid())
+  email                 String                 @unique
+  password              String
+  firstName             String
+  lastName              String
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  challenges            Challenge[]
+  vulnerabilityReports  VulnerabilityReport[]
 }
 
 model Challenge {
-  id          String   @id @default(uuid())
-  title       String
-  description String
-  difficulty  String
-  duration    Int
-  targetUrl   String?  // Optional target URL for security challenges
-  createdAt   DateTime @default(now())
-  createdBy   String?
-  creator     User?    @relation(fields: [createdBy], references: [id])
+  id                    String                 @id @default(uuid())
+  title                 String
+  description           String
+  difficulty            String
+  duration              Int
+  targetUrl             String?                // Optional target URL for security challenges
+  createdAt             DateTime               @default(now())
+  createdBy             String?
+  creator               User?                  @relation(fields: [createdBy], references: [id])
+  vulnerabilityReports  VulnerabilityReport[]
+}
+
+model VulnerabilityReport {
+  id                String   @id @default(uuid())
+  challengeId       String
+  userId            String
+  title             String
+  severity          String   // critical, high, medium, low, info
+  category          String?
+  description       String
+  stepsToReproduce  String?
+  impact            String?
+  recommendation    String?
+  evidence          String?
+  status            String   @default("submitted") // submitted, reviewed, accepted, rejected
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  challenge         Challenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([challengeId])
+  @@index([userId])
 }

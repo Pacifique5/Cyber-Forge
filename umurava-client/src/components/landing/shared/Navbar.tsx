@@ -21,7 +21,7 @@ export default function Navbar() {
   const [showAuthMenu, setShowAuthMenu] = useState(false);
   const pathname = usePathname();
   const authMenuRef = useRef<HTMLDivElement>(null);
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme, mounted } = useTheme();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -84,8 +84,11 @@ export default function Navbar() {
             onClick={toggleTheme}
             className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
             aria-label="Toggle theme"
+            disabled={!mounted}
           >
-            {theme === 'light' ? (
+            {!mounted ? (
+              <div className="h-5 w-5 bg-gray-300 dark:bg-gray-600 rounded animate-pulse" />
+            ) : theme === 'light' ? (
               <Moon className="h-5 w-5 text-gray-600 dark:text-gray-300" />
             ) : (
               <Sun className="h-5 w-5 text-gray-600 dark:text-gray-300" />
@@ -125,8 +128,11 @@ export default function Navbar() {
             onClick={toggleTheme}
             className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
             aria-label="Toggle theme"
+            disabled={!mounted}
           >
-            {theme === 'light' ? (
+            {!mounted ? (
+              <div className="h-5 w-5 bg-gray-300 dark:bg-gray-600 rounded animate-pulse" />
+            ) : theme === 'light' ? (
               <Moon className="h-5 w-5 text-gray-600 dark:text-gray-300" />
             ) : (
               <Sun className="h-5 w-5 text-gray-600 dark:text-gray-300" />

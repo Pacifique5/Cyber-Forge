@@ -43,17 +43,19 @@ export default function UpdateEmailModal({ isOpen, onClose }: UpdateEmailModalPr
 
     setLoading(true);
     try {
-      // TODO: Implement email update API call
-      console.log("Email update:", { 
-        currentEmail: formData.currentEmail, 
+      const { userService } = await import('@/services/userService');
+      await userService.updateEmail({
         newEmail: formData.newEmail,
-        password: formData.password 
+        password: formData.password
       });
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
+      
+      console.log('✅ Email updated successfully');
       alert("Email updated successfully! Please check your new email for verification.");
+      setFormData({ currentEmail: user?.email || "", newEmail: "", confirmEmail: "", password: "" });
       onClose();
-    } catch (error) {
-      alert("Failed to update email. Please try again.");
+    } catch (error: any) {
+      console.error('❌ Failed to update email:', error);
+      alert(`Failed to update email: ${error.message}`);
     } finally {
       setLoading(false);
     }

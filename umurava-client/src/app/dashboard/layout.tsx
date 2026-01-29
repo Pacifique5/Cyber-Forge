@@ -35,7 +35,7 @@ export default function DashboardLayout({
 }) {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme, mounted } = useTheme();
   const { user, isAuthenticated, loading } = useSelector((state: RootState) => state.auth);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -215,8 +215,15 @@ export default function DashboardLayout({
                 onClick={toggleTheme}
                 className="p-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                 title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+                disabled={!mounted}
               >
-                {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+                {!mounted ? (
+                  <div className="h-5 w-5 bg-gray-300 dark:bg-gray-600 rounded animate-pulse" />
+                ) : theme === 'light' ? (
+                  <Moon className="h-5 w-5" />
+                ) : (
+                  <Sun className="h-5 w-5" />
+                )}
               </button>
 
               {/* Notifications */}

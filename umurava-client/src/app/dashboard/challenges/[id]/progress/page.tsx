@@ -44,9 +44,27 @@ const ChallengeProgressPage = () => {
   const [progress, setProgress] = useState<ProgressData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [submissions, setSubmissions] = useState<any[]>([]);
+  const [loadingSubmissions, setLoadingSubmissions] = useState(false);
   const [activeTab, setActiveTab] = useState<'overview' | 'report' | 'submissions'>('overview');
 
   const challengeId = params.id as string;
+
+  const fetchSubmissions = async () => {
+    try {
+      setLoadingSubmissions(true);
+      const { vulnerabilityService } = await import('@/services/vulnerabilityService');
+      const reports = await vulnerabilityService.getReportsByChallenge(challengeId);
+      setSubmissions(reports);
+      
+      // Update progress with actual report count
+      setProgress(prev => prev ? { ...prev, reportsSubmitted: reports.length } : null);
+    } catch (error) {
+      console.error('Failed to load submissions:', error);
+    } finally {
+      setLoadingSubmissions(false);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,6 +85,9 @@ const ChallengeProgressPage = () => {
           reportsSubmitted: 0,
           status: 'in-progress'
         });
+
+        // Load submissions
+        await fetchSubmissions();
       } catch (err) {
         setError("Failed to load challenge progress");
         console.error("Error fetching data:", err);
@@ -79,6 +100,13 @@ const ChallengeProgressPage = () => {
       fetchData();
     }
   }, [challengeId]);
+
+  // Refresh submissions when switching to submissions tab
+  useEffect(() => {
+    if (activeTab === 'submissions') {
+      fetchSubmissions();
+    }
+  }, [activeTab]);
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -347,14 +375,21 @@ const ChallengeProgressPage = () => {
           {activeTab === 'report' && (
             <div>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Submit Vulnerability Reports</h3>
-              <VulnerabilityReportForm challengeId={challengeId} />
+              <VulnerabilityReportForm 
+                challengeId={challengeId} 
+                onReportSubmitted={fetchSubmissions}
+              />
             </div>
           )}
 
           {activeTab === 'submissions' && (
             <div>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Your Submissions</h3>
-              {progress.reportsSubmitted === 0 ? (
+              {loadingSubmissions ? (
+                <div className="flex items-center justify-center py-12">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-light"></div>
+                </div>
+              ) : submissions.length === 0 ? (
                 <div className="text-center py-12">
                   <FileText className="h-16 w-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
                   <h4 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">No submissions yet</h4>
@@ -370,8 +405,64 @@ const ChallengeProgressPage = () => {
                 </div>
               ) : (
                 <div className="space-y-4">
-                  {/* This would show actual submissions in a real app */}
-                  <p className="text-gray-500 dark:text-gray-400">Your submitted vulnerability reports will appear here.</p>
+                  {submissions.map((report, index) => (
+                    <div key={report.id || index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 border border-gray-200 dark:border-gray-600">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-2">
+                            <h4 className="font-semibold text-gray-900 dark:text-gray-100">{report.title}</h4>
+                            <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium border ${
+                              report.severity === 'critical' ? 'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-400 border-red-200 dark:border-red-800' :
+                              report.severity === 'high' ? 'bg-orange-100 dark:bg-orange-900/20 text-orange-800 dark:text-orange-400 border-orange-200 dark:border-orange-800' :
+                              report.severity === 'medium' ? 'bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-400 border-yellow-200 dark:border-yellow-800' :
+                              report.severity === 'low' ? 'bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 border-blue-200 dark:border-blue-800' :
+                              'bg-gray-100 dark:bg-gray-900/20 text-gray-800 dark:text-gray-400 border-gray-200 dark:border-gray-800'
+                            }`}>
+                              {report.severity?.toUpperCase()}
+                            </span>
+                            {report.category && (
+                              <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-200 dark:bg-gray-600 px-2 py-1 rounded">
+                                {report.category}
+                              </span>
+                            )}
+                            <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium border ${
+                              report.status === 'submitted' ? 'bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 border-blue-200 dark:border-blue-800' :
+                              report.status === 'reviewed' ? 'bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-400 border-yellow-200 dark:border-yellow-800' :
+                              report.status === 'accepted' ? 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 border-green-200 dark:border-green-800' :
+                              'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-400 border-red-200 dark:border-red-800'
+                            }`}>
+                              {report.status?.charAt(0).toUpperCase() + report.status?.slice(1)}
+                            </span>
+                          </div>
+                          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{report.description}</p>
+                          {report.stepsToReproduce && (
+                            <div className="mb-3">
+                              <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Steps to Reproduce:</h5>
+                              <p className="text-sm text-gray-600 dark:text-gray-400 whitespace-pre-line">{report.stepsToReproduce}</p>
+                            </div>
+                          )}
+                          {report.impact && (
+                            <div className="mb-3">
+                              <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Impact:</h5>
+                              <p className="text-sm text-gray-600 dark:text-gray-400">{report.impact}</p>
+                            </div>
+                          )}
+                          {report.recommendation && (
+                            <div className="mb-3">
+                              <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Recommendation:</h5>
+                              <p className="text-sm text-gray-600 dark:text-gray-400">{report.recommendation}</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 pt-3 border-t border-gray-200 dark:border-gray-600">
+                        <span>Submitted {new Date(report.createdAt).toLocaleString()}</span>
+                        {report.updatedAt && report.updatedAt !== report.createdAt && (
+                          <span>Updated {new Date(report.updatedAt).toLocaleString()}</span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               )}
             </div>

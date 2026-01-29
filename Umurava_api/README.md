@@ -1,161 +1,258 @@
-# CyberForge API
+# 🛡️ CyberForge API - Backend Server
 
-## 📌 Overview
-The **CyberForge API** is a comprehensive RESTful API built with Node.js and Express for managing cybersecurity challenges, vulnerability assessments, and security education features. It provides a complete backend solution for the CyberForge platform.
+The backend API server for CyberForge, a comprehensive cybersecurity education platform that enables vulnerability assessment challenges and security learning.
 
-## 🚀 Features
-- ✅ User authentication and authorization (JWT-based)
-- ✅ Security challenge management (CRUD operations)
-- ✅ Vulnerability reporting system
-- ✅ User profile management
-- ✅ Dashboard analytics for security assessments
-- ✅ Community features for security professionals
-- ✅ Input validation using `express-validator`
-- ✅ Middleware-based request validation
-- ✅ PostgreSQL database integration with Prisma ORM
-- ✅ Modular architecture for scalability
+## 🌐 **Live API**
 
-## 🛠️ Tech Stack
-- **Backend:** Node.js, Express.js
+- **Production API:** [https://cyberforge-api.onrender.com](https://cyberforge-api.onrender.com)
+- **Health Check:** [https://cyberforge-api.onrender.com/api/health](https://cyberforge-api.onrender.com/api/health)
+
+## 🚀 **Technology Stack**
+
+- **Runtime:** Node.js with Express.js
 - **Database:** PostgreSQL with Prisma ORM
-- **Authentication:** JWT (JSON Web Tokens)
-- **Validation:** `express-validator`
-- **Middleware:** Custom validation and authentication middleware
+- **Authentication:** JWT with bcryptjs
+- **Validation:** Express Validator
+- **Deployment:** Render with automatic migrations
 
-## 📂 Folder Structure
-```
-CyberForge_API/
-┣ 📂 controllers/
-┃ ┣ 📜 authController.js
-┃ ┣ 📜 challengeController.js
-┃ ┣ 📜 userController.js
-┃ ┣ 📜 dashboardController.js
-┃ ┗ 📜 communityController.js
-┣ 📂 middleware/
-┃ ┣ 📜 authMiddleware.js
-┃ ┣ 📜 validateMiddleware.js
-┃ ┗ 📜 errorMiddleware.js
-┣ 📂 models/
-┃ ┣ 📜 userModel.js
-┃ ┗ 📜 ChallengeModel.js
-┣ 📂 routes/
-┃ ┣ 📜 authRoutes.js
-┃ ┣ 📜 challengeRoutes.js
-┃ ┣ 📜 userRoutes.js
-┃ ┗ 📜 dashboardRoutes.js
-┣ 📂 validations/
-┃ ┣ 📜 challengeValidation.js
-┃ ┗ 📜 user.validation.ts
-┣ 📂 prisma/
-┃ ┣ 📜 schema.prisma
-┃ ┗ 📂 migrations/
-┣ 📂 config/
-┃ ┣ 📜 database.js
-┃ ┣ 📜 env.js
-┃ ┗ 📜 logger.js
-┣ 📜 app.js
-┣ 📜 server.js
-┗ 📜 README.md
-```
+## 📊 **API Endpoints**
 
-## 🔧 Installation & Setup
+### **Health Check**
+- `GET /api/health` - Server health status
 
-### 1️⃣ Clone the Repository
+### **Authentication**
+- `POST /api/auth/register` - User registration
+- `POST /api/auth/login` - User login
+
+### **Challenges**
+- `GET /api/challenges` - List all challenges
+- `POST /api/challenges` - Create new challenge (Auth required)
+- `GET /api/challenges/:id` - Get challenge details
+
+### **Vulnerability Reports**
+- `POST /api/vulnerabilities/submit` - Submit vulnerability reports (Auth required)
+- `GET /api/vulnerabilities/challenge/:id` - Get reports for challenge (Auth required)
+- `GET /api/vulnerabilities/user` - Get user's reports (Auth required)
+
+### **User Management**
+- `GET /api/user/profile` - Get user profile (Auth required)
+- `PUT /api/user/profile` - Update profile (Auth required)
+- `PUT /api/user/change-password` - Change password (Auth required)
+- `PUT /api/user/update-email` - Update email (Auth required)
+- `GET /api/user/dashboard-stats` - Get dashboard statistics (Auth required)
+
+### **Dashboard**
+- `GET /api/dashboard/stats` - Get dashboard overview (Auth required)
+
+### **Community**
+- `GET /api/community` - Get community data
+
+### **Contact**
+- `POST /api/contact` - Submit contact form
+
+## 🛠️ **Local Development Setup**
+
+### **Prerequisites**
+- Node.js 18+
+- PostgreSQL database
+- Git
+
+### **Installation**
 ```bash
-git clone https://github.com/your-repo/cyberforge-api.git
-cd cyberforge-api
-```
-
-### 2️⃣ Install Dependencies
-```bash
+cd Umurava_api
 npm install
-```
-
-### 3️⃣ Set Up Environment Variables
-Create a `.env` file and configure your PostgreSQL database:
-```env
-DATABASE_URL=postgresql://username:password@localhost:5432/cyberforge_db
-JWT_SECRET=your_super_secret_jwt_key
-PORT=5000
-```
-
-### 4️⃣ Set Up Database
-```bash
+cp .env.example .env
+# Update .env with your database credentials
 npx prisma migrate dev
 npx prisma generate
+npm run dev
 ```
 
-### 5️⃣ Run the Server
+### **Database Setup**
 ```bash
-npm run dev  # Runs with nodemon
+# Create database
+createdb cyberforge_db
+
+# Run migrations
+npx prisma migrate dev
+
+# Generate Prisma client
+npx prisma generate
+
+# (Optional) Seed database
+npx prisma db seed
 ```
 
-## 📌 API Endpoints
+## 🔧 **Environment Variables**
 
-### 🔐 Authentication
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register a new user |
-| POST | `/api/auth/login` | Login user |
-| POST | `/api/auth/logout` | Logout user |
+```env
+# Database Configuration
+DATABASE_URL=postgresql://username:password@localhost:5432/cyberforge_db
 
-### 🚀 Security Challenges
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/challenges` | Get all security challenges |
-| GET | `/api/challenges/:id` | Get a single challenge |
-| POST | `/api/challenges` | Create a new security challenge |
-| PUT | `/api/challenges/:id` | Update an existing challenge |
-| DELETE | `/api/challenges/:id` | Delete a challenge |
+# JWT Secret (Generate a secure random string for production)
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 
-### 👤 Users
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/users/profile` | Get user profile |
-| PUT | `/api/users/profile` | Update user profile |
-| GET | `/api/users/dashboard` | Get security dashboard data |
-
-### 🏘️ Community
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/community/stats` | Get cybersecurity community statistics |
-| GET | `/api/community/members` | Get community members |
-
-## 🛠️ Validation Rules
-
-### Security Challenge Validation
-- **Title**: Required, string (3-200 chars)
-- **Description**: Required, string (10-2000 chars)
-- **Difficulty**: Must be one of `easy`, `medium`, `hard`
-- **Duration**: Required, positive integer (1-365 days)
-- **Target URL**: Optional, valid URL format
-
-### User Validation
-- **Email**: Required, valid email format
-- **Password**: Required, minimum 6 characters
-- **First Name**: Required, string (2-50 chars)
-- **Last Name**: Required, string (2-50 chars)
-
-## 🔒 Authentication
-The API uses JWT (JSON Web Tokens) for authentication. Include the token in the Authorization header:
-```
-Authorization: Bearer <your_jwt_token>
+# Server Configuration
+PORT=5000
+NODE_ENV=development
 ```
 
-## 🔐 Security Features
-- **Vulnerability Assessment**: Support for security challenge workflows
-- **Target Management**: Dynamic target URL configuration
-- **Report Generation**: Vulnerability reporting system
-- **Progress Tracking**: Security assessment progress monitoring
+## 📁 **Project Structure**
 
-## ⚠️ Ethical Use
-This API is designed for educational cybersecurity purposes only. Users must:
-- Only test applications they own or have explicit permission to test
-- Follow responsible disclosure principles
-- Respect all applicable laws and regulations
+```
+Umurava_api/
+├── config/                 # Configuration files
+│   ├── database.js        # Database connection
+│   ├── env.js            # Environment variables
+│   └── logger.js         # Logging configuration
+├── controllers/           # Route controllers
+│   ├── authController.js
+│   ├── challengeController.js
+│   ├── vulnerabilityController.js
+│   └── userController.js
+├── middleware/           # Express middleware
+│   ├── authMiddleware.js
+│   ├── errorMiddleware.js
+│   └── validateMiddleware.js
+├── models/              # Database models (Prisma)
+├── routes/              # API routes
+├── services/            # Business logic services
+├── validations/         # Input validation schemas
+├── prisma/             # Database schema and migrations
+│   ├── schema.prisma
+│   └── migrations/
+├── app.js              # Express app configuration
+└── server.js           # Server entry point
+```
 
-## 📌 License
-This project is licensed under the MIT License.
+## 🔐 **Security Features**
 
-## 🤝 Contributing
-We welcome contributions from the cybersecurity community! Please feel free to submit a Pull Request.
+- **JWT Authentication:** Secure token-based authentication
+- **Password Hashing:** bcrypt with salt rounds for password security
+- **Input Validation:** Express Validator for request validation
+- **CORS Configuration:** Proper cross-origin resource sharing setup
+- **Error Handling:** Comprehensive error handling middleware
+- **SQL Injection Prevention:** Prisma ORM prevents SQL injection attacks
+
+## 🗄️ **Database Schema**
+
+### **User Model**
+```prisma
+model User {
+  id                    String                 @id @default(uuid())
+  email                 String                 @unique
+  password              String
+  firstName             String
+  lastName              String
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  challenges            Challenge[]
+  vulnerabilityReports  VulnerabilityReport[]
+}
+```
+
+### **Challenge Model**
+```prisma
+model Challenge {
+  id                    String                 @id @default(uuid())
+  title                 String
+  description           String
+  difficulty            String
+  duration              Int
+  targetUrl             String?
+  createdAt             DateTime               @default(now())
+  createdBy             String?
+  creator               User?                  @relation(fields: [createdBy], references: [id])
+  vulnerabilityReports  VulnerabilityReport[]
+}
+```
+
+### **VulnerabilityReport Model**
+```prisma
+model VulnerabilityReport {
+  id                String   @id @default(uuid())
+  challengeId       String
+  userId            String
+  title             String
+  severity          String
+  category          String?
+  description       String
+  stepsToReproduce  String?
+  impact            String?
+  recommendation    String?
+  evidence          String?
+  status            String   @default("submitted")
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  challenge         Challenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+```
+
+## 🚀 **Deployment**
+
+### **Render Deployment**
+1. Connect your GitHub repository to Render
+2. Use the provided `render.yaml` configuration
+3. Set up PostgreSQL database
+4. Configure environment variables
+5. Deploy with automatic migrations
+
+### **Environment Variables for Production**
+- `DATABASE_URL` - Automatically provided by Render PostgreSQL
+- `JWT_SECRET` - Auto-generated secure random string
+- `NODE_ENV` - Set to "production"
+- `PORT` - Set to 10000 (Render default)
+
+## 🧪 **Testing**
+
+```bash
+# Run tests (when implemented)
+npm test
+
+# Run with coverage
+npm run test:coverage
+```
+
+## 📝 **API Documentation**
+
+### **Authentication Required**
+Most endpoints require a valid JWT token in the Authorization header:
+```
+Authorization: Bearer <your-jwt-token>
+```
+
+### **Error Responses**
+All endpoints return consistent error responses:
+```json
+{
+  "message": "Error description",
+  "error": "Detailed error information"
+}
+```
+
+### **Success Responses**
+Successful responses include relevant data and status messages:
+```json
+{
+  "message": "Operation successful",
+  "data": { ... }
+}
+```
+
+## 🤝 **Contributing**
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Submit a pull request
+
+## 📝 **License**
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+**Built with ❤️ by the CyberForge Team**

@@ -38,13 +38,19 @@ export default function ChangePasswordModal({ isOpen, onClose }: ChangePasswordM
 
     setLoading(true);
     try {
-      // TODO: Implement password change API call
-      console.log("Password change:", { currentPassword: formData.currentPassword, newPassword: formData.newPassword });
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
+      const { userService } = await import('@/services/userService');
+      await userService.changePassword({
+        currentPassword: formData.currentPassword,
+        newPassword: formData.newPassword
+      });
+      
+      console.log('✅ Password changed successfully');
       alert("Password changed successfully!");
+      setFormData({ currentPassword: "", newPassword: "", confirmPassword: "" });
       onClose();
-    } catch (error) {
-      alert("Failed to change password. Please try again.");
+    } catch (error: any) {
+      console.error('❌ Failed to change password:', error);
+      alert(`Failed to change password: ${error.message}`);
     } finally {
       setLoading(false);
     }

@@ -39,6 +39,7 @@ const CreateChallengePage = () => {
                 description: challengeData.description,
                 difficulty: challengeData.difficulty,
                 duration: Number(challengeData.duration),
+                targetUrl: challengeData.targetUrl || undefined, // Include targetUrl
             })).unwrap();
             
             router.push("/dashboard/challenges");
