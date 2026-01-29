@@ -230,32 +230,34 @@ const ChallengeProgressPage = () => {
         </div>
       </div>
 
-      {/* Target Website Quick Access */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl border border-blue-200 dark:border-blue-800 p-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-2 flex items-center gap-2">
-              <Target className="h-5 w-5" />
-              Target Website Access
-            </h3>
-            <p className="text-blue-700 dark:text-blue-300 text-sm mb-3">
-              Continue your security assessment of the target application
-            </p>
-            <p className="font-mono text-sm text-blue-600 dark:text-blue-400 bg-white dark:bg-gray-800 px-3 py-1 rounded border">
-              https://mpacifique.vercel.app/
-            </p>
+      {/* Target Website Quick Access - Only show if targetUrl exists */}
+      {challenge.targetUrl && (
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl border border-blue-200 dark:border-blue-800 p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-2 flex items-center gap-2">
+                <Target className="h-5 w-5" />
+                Target Website Access
+              </h3>
+              <p className="text-blue-700 dark:text-blue-300 text-sm mb-3">
+                Continue your security assessment of the target application
+              </p>
+              <p className="font-mono text-sm text-blue-600 dark:text-blue-400 bg-white dark:bg-gray-800 px-3 py-1 rounded border">
+                {challenge.targetUrl}
+              </p>
+            </div>
+            <a
+              href={challenge.targetUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2"
+            >
+              <ExternalLink className="h-5 w-5" />
+              Launch Target
+            </a>
           </div>
-          <a
-            href="https://mpacifique.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2"
-          >
-            <ExternalLink className="h-5 w-5" />
-            Launch Target
-          </a>
         </div>
-      </div>
+      )}
 
       {/* Tabs */}
       <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm">

@@ -171,34 +171,36 @@ const ChallengeDetailPage = () => {
                 </ul>
               </div>
               
-              {/* Target Website Section */}
-              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                <h3 className="font-medium text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2">
-                  <Target className="h-4 w-4" />
-                  🌐 Target Website:
-                </h3>
-                <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-blue-300 dark:border-blue-600">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-mono text-sm text-blue-700 dark:text-blue-300">
-                        https://mpacifique.vercel.app/
-                      </p>
-                      <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">
-                        🎯 Real-world portfolio website for security assessment
-                      </p>
+              {/* Target Website Section - Only show if targetUrl exists */}
+              {challenge.targetUrl && (
+                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                  <h3 className="font-medium text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2">
+                    <Target className="h-4 w-4" />
+                    🌐 Target Website:
+                  </h3>
+                  <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-blue-300 dark:border-blue-600">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="font-mono text-sm text-blue-700 dark:text-blue-300">
+                          {challenge.targetUrl}
+                        </p>
+                        <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">
+                          🎯 Target application for security assessment
+                        </p>
+                      </div>
+                      <a
+                        href={challenge.targetUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
+                      >
+                        <Play className="h-4 w-4" />
+                        Launch Target
+                      </a>
                     </div>
-                    <a
-                      href="https://mpacifique.vercel.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
-                    >
-                      <Play className="h-4 w-4" />
-                      Launch Target
-                    </a>
                   </div>
                 </div>
-              </div>
+              )}
 
               <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-4">
                 <h3 className="font-medium text-green-900 dark:text-green-300 mb-2">📚 What you'll learn:</h3>

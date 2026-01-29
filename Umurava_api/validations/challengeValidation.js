@@ -17,7 +17,11 @@ const challengeValidationRules = [
 
     body("duration")
         .notEmpty().withMessage("Duration is required")
-        .isInt({ min: 1, max: 365 }).withMessage("Duration must be a positive integer between 1 and 365 days")
+        .isInt({ min: 1, max: 365 }).withMessage("Duration must be a positive integer between 1 and 365 days"),
+
+    body("targetUrl")
+        .optional()
+        .isURL().withMessage("Target URL must be a valid URL")
 ];
 
 module.exports = challengeValidationRules;

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store";
 import { createChallengeAsync } from "@/store/challengesSlice";
-import { ArrowLeft, Save, Trophy, Clock, Target } from "lucide-react";
+import { ArrowLeft, Save, Trophy, Clock, Target, Globe } from "lucide-react";
 import Link from "next/link";
 
 const CreateChallengePage = () => {
@@ -163,6 +163,33 @@ const CreateChallengePage = () => {
                         </div>
                     </div>
 
+                    {/* Target URL (Optional) */}
+                    <div>
+                        <label htmlFor="targetUrl" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Target URL (Optional)
+                            <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">
+                                For security assessment challenges
+                            </span>
+                        </label>
+                        <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <Globe className="h-5 w-5 text-gray-400 dark:text-gray-500" />
+                            </div>
+                            <input 
+                                type="url" 
+                                id="targetUrl" 
+                                name="targetUrl" 
+                                value={challengeData.targetUrl} 
+                                onChange={handleChange} 
+                                placeholder="https://example.com (leave empty for non-security challenges)"
+                                className="w-full pl-10 pr-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-light focus:border-transparent transition-colors" 
+                            />
+                        </div>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                            💡 Add a target URL for security assessment challenges. Participants will use this for vulnerability testing.
+                        </p>
+                    </div>
+
                     {/* Challenge Guidelines */}
                     <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
                         <h3 className="text-sm font-medium text-blue-900 dark:text-blue-300 mb-2">Challenge Guidelines</h3>
@@ -181,9 +208,10 @@ const CreateChallengePage = () => {
                                     type="button"
                                     onClick={() => setChallengeData({
                                         title: "🕵️ Web Application Security Assessment",
-                                        description: "In this hands-on cybersecurity challenge, participants will conduct a comprehensive security assessment of a real-world portfolio website. Your mission is to identify, document, and report security vulnerabilities using industry-standard methodologies.\n\n🎯 **Target Website:** https://mpacifique.vercel.app/\n\n**Objectives:**\n• Explore the target web application systematically\n• Identify security vulnerabilities and weaknesses\n• Document findings with detailed evidence\n• Submit professional vulnerability reports\n• Learn real-world penetration testing techniques\n\n🔍 **Assessment Areas:**\n• Input validation and sanitization\n• Authentication and session management\n• Cross-site scripting (XSS) vulnerabilities\n• Information disclosure issues\n• Client-side security controls\n• Network and infrastructure assessment\n\n📚 **Skills You'll Develop:**\n• Web application security testing\n• Vulnerability identification and classification\n• Security report writing\n• Understanding of OWASP Top 10\n• Ethical hacking methodologies\n\n🔧 **Recommended Tools:**\n• Browser developer tools (F12)\n• Burp Suite Community Edition\n• OWASP ZAP (Free)\n• Postman for API testing\n• Nmap for network scanning\n\n⚠️ **Ethical Guidelines:**\n• Only test the specified target website\n• Do not attempt to access unauthorized areas\n• Follow responsible disclosure principles\n• Focus on learning and skill development\n• Document everything professionally\n\nBy completing this challenge, you'll gain practical experience in cybersecurity assessment and develop skills highly valued in the information security industry.",
+                                        description: "In this hands-on cybersecurity challenge, participants will conduct a comprehensive security assessment of a real-world web application. Your mission is to identify, document, and report security vulnerabilities using industry-standard methodologies.\n\n🎯 **Objectives:**\n• Explore the target web application systematically\n• Identify security vulnerabilities and weaknesses\n• Document findings with detailed evidence\n• Submit professional vulnerability reports\n• Learn real-world penetration testing techniques\n\n🔍 **Assessment Areas:**\n• Input validation and sanitization\n• Authentication and session management\n• Cross-site scripting (XSS) vulnerabilities\n• Information disclosure issues\n• Client-side security controls\n• Network and infrastructure assessment\n\n📚 **Skills You'll Develop:**\n• Web application security testing\n• Vulnerability identification and classification\n• Security report writing\n• Understanding of OWASP Top 10\n• Ethical hacking methodologies\n\n🔧 **Recommended Tools:**\n• Browser developer tools (F12)\n• Burp Suite Community Edition\n• OWASP ZAP (Free)\n• Postman for API testing\n• Nmap for network scanning\n\n⚠️ **Ethical Guidelines:**\n• Only test the specified target website\n• Do not attempt to access unauthorized areas\n• Follow responsible disclosure principles\n• Focus on learning and skill development\n• Document everything professionally\n\nBy completing this challenge, you'll gain practical experience in cybersecurity assessment and develop skills highly valued in the information security industry.",
                                         difficulty: "medium",
-                                        duration: "7"
+                                        duration: "7",
+                                        targetUrl: "https://mpacifique.vercel.app/"
                                     })}
                                     className="text-xs bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300 px-2 py-1 rounded hover:bg-blue-200 dark:hover:bg-blue-700 transition-colors"
                                 >
